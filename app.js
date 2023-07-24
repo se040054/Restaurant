@@ -40,6 +40,10 @@ app.post('/restaurants',(req,res)=>{
       description: newRestaurant.description
   }).then(()=>res.redirect('/restaurants'))
 })
+
+app.get('/restaurants/:id')
+
+
 app.listen(port, () => {
   console.log(`Click : http://localhost:3000`)
 })
