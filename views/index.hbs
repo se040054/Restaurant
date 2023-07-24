@@ -1,0 +1,19 @@
+<div class="container">
+
+  {{#each restaurants as |restaurant|}}
+
+  <div class="restaurant" id="restaurant-{{restaurant.id}}">
+      <div class="img">
+        <img src="{{restaurant.image}}" alt="">
+      </div>
+      <div class="name">
+        <h4>{{restaurant.name}}</h4>
+      </div>
+      <div class="function">
+          <a href="/restaurants/{{restaurant.id}}/edit">Edit</a>
+          <a href="/restaurants/{{restaurant.id}}">Detail</a>
+          <button>Delete</button>
+      </div>
+  </div>
+  {{/each}}
+</div>

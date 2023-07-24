@@ -14,8 +14,11 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/restaurants',(req,res)=>{
-  return Restaurant.findAll()
-    .then((Restaurants)=>res.send({Restaurants}))
+  return Restaurant.findAll({
+    attribute:['id','image','name'],
+    raw:true
+  })
+    .then((restaurants)=>res.render('index',{restaurants}))
 })
 
 app.listen(port, () => {
