@@ -1,25 +1,30 @@
 'use strict';
 
+const json = require('../public/jsons/restaurant')
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    let restaurants=json.results.map(restaurant=>({
+      id: restaurant.id,
+      name: restaurant.name,
+      name_en: restaurant.name_en,
+      category: restaurant.category,
+      image: restaurant.image,
+      location: restaurant.location,
+      phone: restaurant.phone,
+      google_map: restaurant.google_map,
+      rating: restaurant.rating,
+      description: restaurant.description,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }))
+
+    await queryInterface.bulkInsert('Restaurants',restaurants,{}
+     )
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+     queryInterface.bulkDelete('Restaurants', null, {});
+    
   }
 };
