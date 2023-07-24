@@ -1,3 +1,4 @@
+'use strict'
 const express = require('express')
 const { engine } = require('express-handlebars')
 const app = express()
@@ -5,6 +6,7 @@ const port = 3000
 const db=require('./models')
 const Restaurant=db.Restaurant
 const bodyParser = require('body-parser')
+const restaurant = require('./models/restaurant')
 app.engine('.hbs', engine({extname: '.hbs'}))
 app.set('view engine', '.hbs')
 app.set('views', './views')
@@ -16,7 +18,7 @@ app.get('/',(req,res)=>{
 
 app.get('/restaurants',(req,res)=>{
   return Restaurant.findAll({
-    attribute:['id','image','name'],
+    attributes:['id','image','name'],
     raw:true
   })
     .then((restaurants)=>res.render('index',{restaurants}))
@@ -27,7 +29,6 @@ app.get('/restaurants/create',(req,res)=>{
 
 app.post('/restaurants',(req,res)=>{
   const newRestaurant= req.body
-  console.log(newRestaurant)
   return Restaurant.create({
       name: newRestaurant.name,
       name_en: newRestaurant.name_en,
@@ -41,7 +42,13 @@ app.post('/restaurants',(req,res)=>{
   }).then(()=>res.redirect('/restaurants'))
 })
 
-app.get('/restaurants/:id')
+app.get('/restaurants/:id',(req,res)=>{
+  const id=req.params.id
+  return Restaurant.findByPk(id,({
+    attributes:['id','name','name_en','category','image','location','phone','google_map','rating','description'],
+    raw:true
+  })).then((restaurant)=>res.render('detail',{restaurant}))
+})
 
 
 app.listen(port, () => {
