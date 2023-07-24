@@ -1,7 +1,8 @@
+
+<a href="/restaurants/create"><button class="create">I have a new Restaurant ! </button></a>
 <div class="container">
-
+  
   {{#each restaurants as |restaurant|}}
-
   <div class="restaurant" id="restaurant-{{restaurant.id}}">
       <div class="img">
         <img src="{{restaurant.image}}" alt="">
@@ -16,4 +17,5 @@
       </div>
   </div>
   {{/each}}
+
 </div>

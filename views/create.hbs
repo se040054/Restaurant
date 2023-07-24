@@ -1,0 +1,43 @@
+<div class="create-container" >
+<form  action="/restaurants" method="POST">
+{{!-- restaurant as | re |--}}
+<div class="create-form">
+  <label>餐廳名稱 : </p> 
+  <input id="name" type="text" placeholder="Enter name... " name="name" required>
+</div>
+<div class="create-form">
+  <label>英文名稱 : </p>
+    <input id="name-en" type="text" placeholder="Enter english name... " name="name_en" >
+</div>
+<div class="create-form">
+  <label>分類 : </p>
+    <input id="category" type="text" placeholder="Enter category... " name="category" required>
+</div>
+<div class="create-form">
+  <label>圖片網址 : </p>
+    <input id="image" type="text" placeholder="Enter imageURL... " name="image">
+</div>
+<div class="create-form">
+  <label>地址 : </p>
+    <input id="location" type="text" placeholder="Enter location... " name="location" required>
+</div>
+<div class="create-form">
+  <label>電話 : </p>
+    <input id="phone" type="text" placeholder="Enter phone... " name="phone">
+</div>
+<div class="create-form">
+  <label>Google 地圖網址 : </p>
+    <input id="google-map" type="text" placeholder="Enter google map... " name="google_map">
+</div>
+<div class="create-form">
+  <label>評分 : </p>
+    <input id="rating" type="number" min="1" max="5" step="0.1" placeholder="Enter rating... " name="rating" required>
+</div>
+<div class="create-form">
+  <label>餐廳介紹 : </p>
+    <input id="description" type="textarea " placeholder="Enter description... " name="description" required>
+</div>
+<button type="submit"> 送出 </button>
+</form>
+</div>
+

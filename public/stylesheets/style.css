@@ -1,22 +1,20 @@
 body {
   background-color: #dde9eb;
   height: 100%;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 .container{
   display: flex;
   flex-wrap: wrap;
-  margin:10em 0;
+  margin:1em 0;
+
   justify-content: space-evenly;
 }
 
 nav{
   background-color:rgba(0, 129, 133, 0.974);
   width:100%;
-  position: fixed;
-  top:0 ;
-  left: 0;
   color: #ffffff;
   min-height: 2em;
   display: flex;
@@ -60,4 +58,23 @@ h4{
 
 button {
   font-size: 20px;
+}
+
+.create{
+  margin-top: 1em;
+  margin-left: 2.5em;
+  font-size: 30px;
+  padding: 0.5em;
+}
+
+.create-container{
+  margin-top: 2em;
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-container   .create-form{
+  margin-bottom:1em ;
 }
