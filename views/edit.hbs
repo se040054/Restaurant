@@ -1,0 +1,48 @@
+<div class="detail-container">
+  <form action="/restaurants/{{restaurant.id}}?_method=PUT" method="POST">
+  <div>
+    <label for="{{restaurant.name}}">餐廳名稱 : </label>
+    <input id="{{restaurant.name}}" name="name" value="{{restaurant.name}}"></input>
+  </div>
+  
+  <div>
+    <label for="{{restaurant.name_en}}">英文名稱 : </label>
+    <input id="{{restaurant.name_en}}" name="name_en" value="{{restaurant.name_en}}"></input>
+  </div>
+
+  <div>
+    <label for="{{restaurant.image}}">餐廳圖片 : </label>
+    <input id="{{restaurant.image}}" name="image" value="{{restaurant.image}}"></input>
+  </div>
+
+  <div>
+    <label for="{{restaurant.category}}">餐廳類型 :  </label>
+    <input id="{{restaurant.category}}" name="category" value="{{restaurant.category}}"></input>
+  </div>
+    <div>
+      <label for="{{restaurant.location}}">餐廳地址 : </label>
+      <input id="{{restaurant.location}}" name="location" value="{{restaurant.location}}"></input>
+    </div>
+
+    <div>
+      <label for="{{restaurant.google_map}}">google地圖 : </label>
+      <input id="{{restaurant.google_map}}" name="google_map" value="{{restaurant.google_map}}"></input>
+    </div>
+    <div>
+      <label for="{{restaurant.phone}}">餐廳電話 : </label>
+      <input id="{{restaurant.phone}}" name="phone" value="{{restaurant.phone}}"></input>
+    </div>
+    <div>
+      <label for="{{restaurant.rating}}">餐廳評分 : </label>
+      <input id="{{restaurant.rating}}" name="rating" value="{{restaurant.rating}}"></input>
+    </div>
+    <div>
+      <label for="{{restaurant.description}}">餐廳介紹 : </label>
+      <input id="{{restaurant.description}}" name="description" value="{{restaurant.description}}"></input>
+    </div>
+  <button type="submit">送出</button>
+  </form>
+
+</div>
+
+<button class="back"><a href="/restaurants" class="back"> ↩️</a></button>
