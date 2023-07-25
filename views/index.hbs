@@ -13,7 +13,10 @@
       <div class="function">
           <a href="/restaurants/{{restaurant.id}}/edit"><button>Edit</button> </a>
           <a href="/restaurants/{{restaurant.id}}">Detail</a>
-          <button>Delete</button>
+          <form action="/restaurants/{{restaurant.id}}?_method=DELETE" method="POST" >
+          <button type="submit">Delete</button>
+          </form>
+         
       </div>
   </div>
   {{/each}}
