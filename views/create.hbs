@@ -159,6 +159,10 @@
       checkDescriptionValidity(target)
     } else if (input === 'rating') { 
       checkRatingValidity(target)
+    }else if (input === 'image') {
+    checkImgValidity(target)
+     } else if (input === 'google-map') {
+    checkMapValidity(target)
     }
   const validFeedback =  target.nextElementSibling
   const invalidFeedback = validFeedback.nextElementSibling
@@ -172,26 +176,27 @@
     console.log("顯示" +target +"錯誤feedback")
     validFeedback.classList.remove('show')
     invalidFeedback.classList.add('show')
-  }
+  } 
+
 
 
   
 
   })
 
-  form.addEventListener('change', function (event) { //等焦點離開才處理
+  {{!-- form.addEventListener('change', function (event) { //等焦點離開才處理
       const target = event.target
       const input = target.id;
       target.classList.add('was-validated')
       console.log(input)  
-      if (input === 'image') {
+      else if (input === 'image') {
         checkImgValidity(target)
       }
       
       else if (input === 'google-map'){
         checkMapValidity(target)
       }
-   })
+   }) --}}
 
   function checkNameValidity(target){
       if (target.value.length < 3 || target.value.length >15){
@@ -228,7 +233,7 @@
       ImgValidity=true
     }
     image.onerror=function(){
-     target.classList.remove('valid')
+      target.classList.remove('valid')
      ImgValidity=false
     }
     image.src=url
@@ -276,7 +281,7 @@
 
   async function checkMapValidity(target){
     const url =target.value
-    if (url.startsWith('https://goo.gl/maps/')){
+    if (url.startsWith('https://goo.gl/maps')){
        target.classList.add('valid')
        google_mapValidity = true
        return 

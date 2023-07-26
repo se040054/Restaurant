@@ -125,6 +125,14 @@ a.back{
 
 .valid-feedback.show , .invalid-feedback.show{
   display: inline;
+  font-size: 16px;
+  font-weight:500;
+}
+.valid-feedback.show{
+  color: green;
+}
+.invalid-feedback.show{
+  color: red;
 }
 
 .empty{

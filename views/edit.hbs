@@ -168,6 +168,10 @@
       checkDescriptionValidity(target)
     } else if (input === 'rating') {
       checkRatingValidity(target)
+    }else if (input === 'image') {
+      checkImgValidity(target)
+    }else if (input === 'google-map') {
+      checkMapValidity(target)
     }
     const validFeedback = target.nextElementSibling
     const invalidFeedback = validFeedback.nextElementSibling
@@ -184,23 +188,16 @@
     }
 
 
-
-
   })
 
+{{!-- 
   form.addEventListener('change', function (event) { //等焦點離開才處理
     const target = event.target
     const input = target.id;
     target.classList.add('was-validated')
     console.log(input)
-    if (input === 'image') {
-      checkImgValidity(target)
-    }
-
-    else if (input === 'google-map') {
-      checkMapValidity(target)
-    }
-  })
+ 
+  }) --}}
 
   function checkNameValidity(target) {
     if (target.value.length < 3 || target.value.length > 15) {
