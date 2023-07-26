@@ -1,48 +1,322 @@
-<div class="detail-container">
-  <form action="/restaurants/{{restaurant.id}}?_method=PUT" method="POST">
-  <div>
-    <label for="{{restaurant.name}}">餐廳名稱 : </label>
-    <input id="{{restaurant.name}}" name="name" value="{{restaurant.name}}"></input>
-  </div>
-  
-  <div>
-    <label for="{{restaurant.name_en}}">英文名稱 : </label>
-    <input id="{{restaurant.name_en}}" name="name_en" value="{{restaurant.name_en}}"></input>
-  </div>
+<div class="create-container">
+  <form action="/restaurants/{{restaurant.id}}?_method=PUT" method="POST" class="form" novalidate>
 
-  <div>
-    <label for="{{restaurant.image}}">餐廳圖片 : </label>
-    <input id="{{restaurant.image}}" name="image" value="{{restaurant.image}}"></input>
-  </div>
 
-  <div>
-    <label for="{{restaurant.category}}">餐廳類型 :  </label>
-    <input id="{{restaurant.category}}" name="category" value="{{restaurant.category}}"></input>
-  </div>
-    <div>
-      <label for="{{restaurant.location}}">餐廳地址 : </label>
-      <input id="{{restaurant.location}}" name="location" value="{{restaurant.location}}"></input>
+    <div class="create-form">
+      <label>*餐廳名稱 :
+        <input id="name" type="text" placeholder="Enter name... " name="name" minlength="2" maxlength="40" value="{{restaurant.name}}" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+        <div class="invalid-feedback">
+          請輸入3~15字的餐廳名稱
+        </div>
     </div>
 
-    <div>
-      <label for="{{restaurant.google_map}}">google地圖 : </label>
-      <input id="{{restaurant.google_map}}" name="google_map" value="{{restaurant.google_map}}"></input>
+
+    <div class="create-form">
+      <label>*英文名稱 :
+        <input id="name-en" type="text" placeholder="Full English Name" name="name_en" minlength="2" maxlength="40"
+          pattern="^[a-zA-Z0-9\s]+$" value="{{restaurant.name_en}}" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+        <div class="invalid-feedback">
+          請輸入3~30字的餐廳名稱(僅接受英文 數字 空格) 
+        </div>
     </div>
-    <div>
-      <label for="{{restaurant.phone}}">餐廳電話 : </label>
-      <input id="{{restaurant.phone}}" name="phone" value="{{restaurant.phone}}"></input>
+
+
+    <div class="create-form">
+      <label>*分類 :
+        <select id="category" name="category"  required>
+          <option value="" selected disabled>--請選擇一個選項--</option>
+          <option>中東料理</option>
+          <option>日本料理</option>
+          <option>義式餐廳</option>
+          <option>美式</option>
+          <option>酒吧</option>
+          <option>咖啡</option>
+          <option>台式料理</option>
+          <option>越南料理</option>
+          <option>韓式料理</option>
+          <option>飲料店</option>
+          <option>零食甜點</option>
+        </select>
     </div>
-    <div>
-      <label for="{{restaurant.rating}}">餐廳評分 : </label>
-      <input id="{{restaurant.rating}}" name="rating" value="{{restaurant.rating}}"></input>
+    <div class="create-form">
+      <label>*圖片網址 :
+        <input id="image" type="text" placeholder="Enter imageURL... " name="image" class="custom-input" value="{{restaurant.image}}" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+        <div class="invalid-feedback">
+          請上傳公開圖片網址
+        </div>
     </div>
-    <div>
-      <label for="{{restaurant.description}}">餐廳介紹 : </label>
-      <input id="{{restaurant.description}}" name="description" value="{{restaurant.description}}"></input>
+    <div class="create-form">
+      <label>*地址 :
+        <input id="location" type="text" placeholder="Enter location... " name="location" class="custom-input"
+          maxlength="250" value="{{restaurant.location}}" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+        <div class="invalid-feedback">
+          請輸入10~100字的地址
+        </div>
     </div>
-  <button type="submit">送出</button>
+    <div class="create-form">
+      <label>電話 :
+        <input id="phone" type="text" placeholder="Enter phone... " minlength="9" maxlength="10" name="phone"
+          pattern="^[0-9]+$" value="{{restaurant.phone}}" >
+        <div class="valid-feedback">
+          OK!
+        </div>
+        <div class="invalid-feedback">
+          請輸入行動號碼或市話 (不需要分隔)
+        </div>
+    </div>
+    <div class="create-form">
+
+      <label>Google 地圖網址 :
+        <input id="google-map" type="text" placeholder="Enter google map... " name="google_map" class="custom-input"
+          maxlength="250" value="{{restaurant.google_map}}" >
+        <div class="valid-feedback">
+          OK!
+        </div>
+        <div class="invalid-feedback">
+          請輸入google地圖網址
+        </div>
+
+        <h3>!! google地圖僅能檢測完整網址， 無法檢測重定向網址，並請靜待約30秒 !! </h3>
+    </div>
+
+    <div class="create-form">
+      <label>*評分 :
+        <input id="rating" type="number" min="1" max="5" step="0.1" placeholder="1~5" name="rating" value="{{restaurant.rating}}" required>
+        <div class="valid-feedback">
+          OK!
+        </div>
+        <div class="invalid-feedback">
+          請輸入評分1~5
+        </div>
+    </div>
+    <div class="create-form">
+      <label>*餐廳介紹 :
+        <textarea id="description" rows="5" cols="80" placeholder="Enter description... " name="description"
+         required>"{{restaurant.description}}" </textarea>
+        <div class="valid-feedback">
+          OK!
+        </div>
+        <div class="invalid-feedback">
+          請輸入10~200字的餐廳介紹
+        </div>
+    </div>
+
+
+    <button type="submit"> 送出 </button>
   </form>
-
 </div>
 
-<button class="back"><a href="/restaurants" class="back"> ↩️</a></button>
+
+
+
+<a href="/restaurants" class="back"> ↩️</a>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+
+<script src="/javascripts/main.js"></script>
+
+<script>
+
+  //抓分類
+  const category = document.getElementById("category");
+  const select = "{{restaurant.category}}"
+  category.value = select;
+
+  let nameValid = true
+  let name_enValid = true
+  let categoryValid = true
+  let ImgValidity = true
+  let locationValidity = true
+  let phoneValidity = true
+  let google_mapValidity = true
+  let ratingValidity = true
+  let descriptionValidity = true
+
+
+
+  const form = document.querySelector('.form')
+  form.addEventListener('input', function (event) {
+    const target = event.target
+    const input = target.id;
+    target.classList.add('was-validated')
+    if (input === 'name') {
+      checkNameValidity(target)
+    }
+    else if (input === 'name-en') {
+      checkNameEnValidity(target)
+    } else if (input === 'category') {
+      checkSelect(target)
+    } else if (input === 'location') {
+      checkLocationValidity(target)
+    } else if (input === 'phone') {
+      checkPhoneValidity(target)
+    } else if (input === 'description') {
+      checkDescriptionValidity(target)
+    } else if (input === 'rating') {
+      checkRatingValidity(target)
+    }
+    const validFeedback = target.nextElementSibling
+    const invalidFeedback = validFeedback.nextElementSibling
+
+
+    if (target.classList.contains('valid')) {
+      validFeedback.classList.add('show')
+      invalidFeedback.classList.remove('show')
+    }
+    else if (target.classList.contains('was-validated')) {
+      console.log("顯示" + target + "錯誤feedback")
+      validFeedback.classList.remove('show')
+      invalidFeedback.classList.add('show')
+    }
+
+
+
+
+  })
+
+  form.addEventListener('change', function (event) { //等焦點離開才處理
+    const target = event.target
+    const input = target.id;
+    target.classList.add('was-validated')
+    console.log(input)
+    if (input === 'image') {
+      checkImgValidity(target)
+    }
+
+    else if (input === 'google-map') {
+      checkMapValidity(target)
+    }
+  })
+
+  function checkNameValidity(target) {
+    if (target.value.length < 3 || target.value.length > 15) {
+      target.classList.remove('valid')
+      nameValid = false
+    }
+    else {
+      target.classList.add('valid')
+      nameValid = true
+    }
+  }
+  function checkNameEnValidity(target) {
+    if (target.value.length < 3 || target.value.length > 30 || !(/^[a-zA-Z0-9\s]+$/.test(target.value))) {
+      target.classList.remove('valid')
+      name_enValid = false
+    }
+    else {
+      target.classList.add('valid')
+      name_enValid = true
+    }
+  }
+  function checkSelect(target) {
+    if (target.value) {
+      target.classList.add('valid')
+      categoryValid = true
+    }
+  }
+
+  function checkImgValidity(target) {
+    const url = target.value
+    let image = new Image()
+    image.onload = function () {
+      target.classList.add('valid')
+      ImgValidity = true
+    }
+    image.onerror = function () {
+      target.classList.remove('valid')
+      ImgValidity = false
+    }
+    image.src = url
+  }
+
+  function checkLocationValidity(target) {
+    if (target.value.length <= 10 || target.value.length >= 100) {
+      target.classList.remove('valid')
+      locationValidity = false
+    } else {
+      target.classList.add('valid')
+      locationValidity = true
+    }
+  }
+  function checkPhoneValidity(target) {
+    if (target.value.length < 9 || target.value.length > 10 || !(/^[0-9]+$/.test(target.value))) {
+      target.classList.remove('valid')
+      phoneValidity = false
+    } else {
+      target.classList.add('valid')
+      phoneValidity = true
+    }
+  }
+  function checkRatingValidity(target) { //原先能讓使用者使用小數並扣除尾數 0 但change會導致feedback誤判 所以先暫時不更動
+    let rating = parseFloat(Number(target.value).toFixed(1))
+    console.log(rating)
+    if (rating < 1 || rating > 5) {
+      target.classList.remove('valid')
+      ratingValidity = false
+    } else {
+      target.classList.add('valid')
+      ratingValidity = true
+    }
+    target.value = rating
+  }
+  function checkDescriptionValidity(target) {
+    if (target.value.length < 10 || target.value.length > 200) {
+      target.classList.remove('valid')
+      descriptionValidity = false
+    } else {
+      target.classList.add('valid')
+      descriptionValidity = true
+    }
+  }
+
+  async function checkMapValidity(target) {
+    const url = target.value
+    if (url.startsWith('https://goo.gl/maps/')) {
+      target.classList.add('valid')
+      google_mapValidity = true
+      return
+    } else if (url.startsWith('https://www.google.com/maps')) {
+      await isURLvalid(url).then((result) => {
+        if (result) {
+          target.classList.add('valid')
+          google_mapValidity = true
+        } else {
+          target.classList.remove('valid')
+          google_mapValidity = false
+        }
+      }).catch(err => { console.log(err + "fail from checkMap") })
+
+    }
+    else {
+      target.classList.remove('valid')
+      google_mapValidity = false
+    }
+  }
+
+
+  form.addEventListener('submit', function (event) {
+    if (!(nameValid && name_enValid && ImgValidity && locationValidity && phoneValidity && google_mapValidity
+      && ratingValidity && descriptionValidity)) {
+      event.preventDefault()
+      event.stopPropagation()
+      alert('有東西沒寫')
+      console.log(nameValid, name_enValid, ImgValidity, locationValidity, phoneValidity, google_mapValidity
+        , ratingValidity, descriptionValidity)
+    }
+  })
+
+</script>

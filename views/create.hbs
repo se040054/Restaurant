@@ -21,7 +21,7 @@
         OK!
       </div>
       <div class="invalid-feedback">
-        請輸入3~30字的餐廳名稱(僅接受英文 數字)
+        請輸入3~30字的餐廳名稱(僅接受英文 數字 空格 )
       </div>
 </div>
 
@@ -204,7 +204,7 @@
       }
   }
     function checkNameEnValidity(target){
-        if (target.value.length < 3 || target.value.length >30 || !(/^[a-zA-Z0-9]+$/.test(target.value))) {
+        if (target.value.length < 3 || target.value.length >30 || !(/^[a-zA-Z0-9\s]+$/.test(target.value))) {
           target.classList.remove('valid')
           name_enValid = false
         }
