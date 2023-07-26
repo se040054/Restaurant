@@ -7,7 +7,7 @@ const db=require('./models')
 const Restaurant=db.Restaurant
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override') 
-
+const { Op } = require('sequelize');
 app.engine('.hbs', engine({extname: '.hbs'}))
 app.set('view engine', '.hbs')
 app.set('views', './views')
@@ -26,12 +26,39 @@ app.get('/',(req,res)=>{
 
 
 app.get('/restaurants',(req,res)=>{
+  const keyword = req.query.search?.trim()
+  console.log(keyword)
+  
+  if (keyword){
+    return Restaurant.findAll({
+      attributes:['id','image','name'],
+      raw:true,
+      where : {
+        name : {
+          [Op.like] : `%${keyword}%` }
+      }
+    }
+    ).then((restaurants)=>{
+      console.log(restaurants)
+      if (restaurants.length===0){
+        return res.render('empty',{keyword})
+      }
+      else{
+        return res.render('index',{restaurants,keyword})
+      }
+    })
+    
+  }
+
+
+
+
 
   return Restaurant.findAll({
     attributes:['id','image','name'],
     raw:true
   })
-    .then((restaurants)=>res.render('index',{restaurants}))
+    .then((restaurants)=>res.render('index',{restaurants,keyword}))
 })
 app.get('/restaurants/create',(req,res)=>{
   

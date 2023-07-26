@@ -23,6 +23,12 @@ nav{
   padding: 0 0 0 1.5em ;
 }
 
+.search-bar{
+  display: flex;
+  justify-content: end;
+  margin-right: 70px;
+}
+
 .restaurant{
   border:2px solid black ;
   display: flex;
@@ -63,7 +69,7 @@ button {
 .create{
   margin-top: 1em;
   margin-left: 2.5em;
-  font-size: 30px;
+  font-size: 15px;
   padding: 0.5em;
 }
 
@@ -119,4 +125,17 @@ a.back{
 
 .valid-feedback.show , .invalid-feedback.show{
   display: inline;
+}
+
+.empty{
+  margin-left: 500px;
+  margin-top: 200px;
+}
+.nav-title{
+  margin-right: 60px;
+}
+.nav-btn{
+  font-size: 40px;
+  width: 60px;
+  height: 60px;
 }

@@ -1,7 +1,15 @@
 
 <a href="/restaurants/create"><button class="create">I have a new Restaurant ! </button></a>
+
+  <div class="search-bar">
+  <form action="/restaurants">  
+  <input id="input" type="text" name="search" value="{{keyword}}" >
+  <button type="submit">搜尋</button>
+  </form>
+  </div>
 <div class="container">
-  
+
+
   {{#each restaurants as |restaurant|}}
   <div class="restaurant" id="restaurant-{{restaurant.id}}">
       <div class="img">
@@ -22,3 +30,18 @@
   {{/each}}
 
 </div>
+
+
+<script>
+  const form = document.querySelector('form')
+  
+  form.addEventListener('submit',function(event){
+    const input = document.querySelector('#input').value
+    console.log(input)
+    if (input.length===0){
+      event.stopPropagation()
+      event.preventDefault()
+      alert('你啥都沒輸入')
+    }
+  })
+</script>
