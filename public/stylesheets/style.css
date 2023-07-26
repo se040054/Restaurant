@@ -112,3 +112,11 @@ a.back{
   border-radius: 5px;
   color:black
 }
+
+.valid-feedback , .invalid-feedback{
+  display: none;
+}
+
+.valid-feedback.show , .invalid-feedback.show{
+  display: inline;
+}
