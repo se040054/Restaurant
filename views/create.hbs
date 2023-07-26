@@ -1,15 +1,14 @@
 <div class="create-container" >
-<form  action="/restaurants" method="POST"  >
+<form  action="/restaurants" method="POST" class="form" novalidate>
 
 
 <div class="create-form">
   <label>*餐廳名稱 :  
-  <input id="name" type="text" placeholder="Enter name... " name="name" minlength="2" maxlength="40" 
-  oninput="checkNameValidity(event)" required >
-  <div id="name-valid-feedback">
+  <input id="name" type="text" placeholder="Enter name... " name="name" minlength="2" maxlength="40" required >
+  <div class="valid-feedback">
     OK!
   </div>
-  <div id="name-invalid-feedback">
+  <div class="invalid-feedback">
     Please enter 2 ~ 40 chars
   </div>
 </div>
@@ -17,11 +16,11 @@
 
 <div class="create-form">
   <label>*英文名稱 : 
-    <input id="name-en" type="text" placeholder="Full English Name" name="name_en" minlength="2" maxlength="40"   pattern="^[a-zA-Z0-9]+$" oninput="checkNameEnValidity(event)" required >
-      <div id="name-en-valid-feedback">
+    <input id="name-en" type="text" placeholder="Full English Name" name="name_en" minlength="2" maxlength="40"   pattern="^[a-zA-Z0-9]+$" required >
+      <div class="valid-feedback">
         OK!
       </div>
-      <div id="name-en-invalid-feedback">
+      <div class="invalid-feedback">
         Please enter 2 ~ 40 chars
       </div>
 </div>
@@ -46,7 +45,7 @@
 </div>
 <div class="create-form">
   <label>*圖片網址 : 
-    <input id="image" type="text" placeholder="Enter imageURL... " name="image"  class="custom-input" onchange="checkImgValidity(event)" required >
+    <input id="image" type="text" placeholder="Enter imageURL... " name="image"  class="custom-input" required >
 </div>
 <div class="create-form">
   <label>*地址 : 
@@ -60,6 +59,7 @@
   <label>Google 地圖網址 : 
     <input id="google-map" type="text" placeholder="Enter google map... " name="google_map"   class="custom-input" maxlength="250"  >
 </div>
+
 <div class="create-form">
   <label>*評分 : 
     <input id="rating" type="number" min="1" max="5" step="0.1" placeholder="1~5" name="rating" required>
@@ -74,11 +74,23 @@
 </form>
 </div>
 
+
+
+
 <button class="back"><a href="/restaurants" class="back"> ↩️</a></button>
 
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+
+<script src="/javascripts/main.js"></script>
+
 <script>
+
+
   let nameValid=false
   let name_enValid=false
+  let categoryValid=false
   let ImgValidity=false
   let locationValidity=false
   let phoneValidity=false
@@ -87,66 +99,160 @@
   let descriptionValidity=false
 
 
-
-
-
-
-  function checkNameValidity(event){
-    const name=event.target.value
-    const input=event.target
-    if (name.length < 2 || name.length >40 ){
-      //無效
-      input.setCustomValidity("please enter 2~40 chars ")
-      input.reportValidity()
-      input.classList.add('was-validated') 
-      document.querySelector('#name-invalid-feedback').classList.add('show')
-      document.querySelector('#name-valid-feedback').classList.remove('show') 
+  const form=document.querySelector('.form')
+  form.addEventListener('input', function (event){
+    const target= event.target
+    const input = target.id;
+    target.classList.add('was-validated')
+    if (input==='name'){
+      checkNameValidity(target)
     }
-    else{
-      //有效
-      input.setCustomValidity('')
-      input.classList.add('was-validated')
-      document.querySelector('#name-valid-feedback').classList.add('show')
-      document.querySelector('#name-invalid-feedback').classList.remove('show')
+    else if (input==='name-en'){
+      checkNameEnValidity(target)
+    }else if (input==='category'){
+      checkSelect(target)
+    }else if (input==='location'){
+      checkLocationValidity(target)
+    }else if (input==='phone'){
+      checkPhoneValidity(target)
+    }else if (input==='description'){
+      checkDescriptionValidity(target)
     }
-  }
 
-  function checkNameEnValidity(event) {
-      const name = event.target.value
-      const input = event.target
-      if (name.length < 2 || name.length > 40) {
-        //無效
-        input.setCustomValidity("please enter 2~40 chars ")
-        input.reportValidity()
-        input.classList.add('was-validated')
-        document.querySelector('#name-en-invalid-feedback').classList.add('show')
-        document.querySelector('#name-en-valid-feedback').classList.remove('show')
+{{!-- 
+  const validFeedback =  target.nextElementSibling
+  const invalidFeedback = validFeedback.nextElementSibling --}}
+  
+
+  })
+
+  form.addEventListener('change', function (event) { //等焦點離開才處理
+      const target = event.target
+      const input = target.id;
+      target.classList.add('was-validated')
+      console.log(input)  
+      if (input === 'image') {
+        checkImgValidity(target)
+      }
+      else if (input === 'rating') { //評分有特別處理 ,若馬上處理會無法使用小數 
+        checkRatingValidity(target)
+       }
+      else if (input === 'google-map'){
+        checkMapValidity(target)
+      }
+   })
+
+  function checkNameValidity(target){
+      if (target.value.length < 3 || target.value.length >15){
+        target.classList.remove('valid')
+        name_Valid =false
       }
       else {
-        //有效
-        input.setCustomValidity('')
-        input.classList.add('was-validated')
-        document.querySelector('#name-en-valid-feedback').classList.add('show')
-        document.querySelector('#name-en-invalid-feedback').classList.remove('show')
+        target.classList.add('valid')
+        name_Valid =true
       }
-    }
+  }
+    function checkNameEnValidity(target){
+        if (target.value.length < 3 || target.value.length >30) {
+          target.classList.remove('valid')
+          name_enValid = false
+        }
+        else {
+          target.classList.add('valid')
+          name_enValid = true
+        }
+  }
+  function checkSelect(target){
+      if (target.value){
+        target.classList.add('valid')
+        categoryValid=true
+      }
+  }
 
-
-
-
-  function checkImgValidity(event){
-    const url=event.target.value
+  function checkImgValidity(target){
+    const url=target.value
     let image=new Image()
     image.onload = function (){
-      alert('Yes')
-      return true
+      target.classList.add('valid')
     }
     image.onerror=function(){
-      alert('No')
-      return false
+     target.classList.remove('valid')
     }
     image.src=url
   }
 
+  function checkLocationValidity(target){
+    if (target.value.length<=10 || target.value.length >= 100){
+      target.classList.remove('valid')
+      locationValidity=false
+    }else{
+      target.classList.add('valid')
+      locationValidity = true
+    }
+  }
+  function checkPhoneValidity(target){
+    if (target.value.length <9 || target.value.length >10) {
+      target.classList.remove('valid')
+      phoneValidity = false
+    } else {
+      target.classList.add('valid')
+      phoneValidity = true
+    }
+  }
+  function checkRatingValidity(target){
+    let rating = parseFloat(Number(target.value).toFixed(1)) 
+    console.log(rating)
+    if (rating<1 || rating>5) {
+      target.classList.remove('valid')
+      ratingValidity = false
+    } else {
+      target.classList.add('valid')
+      ratingValidity = true
+    }
+    target.value=rating
+  }
+  function checkDescriptionValidity(target){
+      if (target.value.length<10 || target.value.length>200){
+        target.classList.remove('valid')
+        descriptionValidity = false
+      }else {
+        target.classList.add('valid')
+        descriptionValidity = true
+      }
+  }
+
+  async function checkMapValidity(target){
+    const url =target.value
+    if (url.startsWith('https://goo.gl/maps/')){
+       target.classList.add('valid')
+       google_mapValidity = true
+       return 
+    }else if (url.startsWith('https://www.google.com/maps')){
+    await isURLvalid(url).then((result)=>{
+        if (result){
+          target.classList.add('valid')
+          google_mapValidity = true
+        }else {
+          target.classList.remove('valid')
+          google_mapValidity = false
+        }
+    }).catch(err=>{ console.log(err + "fail from checkMap") })
+    }
+    else{
+      target.classList.remove('valid')
+      google_mapValidity = false
+    }
+    }
+
+
+  form.addEventListener('submit',function (event){
+    if (!(nameValid&&name_enValid&&ImgValidity &&locationValidity&&phoneValidity && google_mapValidity
+    &&ratingValidity &&descriptionValidity)){
+      event.preventDefault()
+      event.stopPropagation()
+      alert('有東西沒寫') 
+    }
+  })
 
 </script>
+

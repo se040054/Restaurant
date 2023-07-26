@@ -101,35 +101,14 @@ a.back{
   width: 800px;
 }
 
-
-
-input.was-validated:invalid {
+.was-validated{
+  border: 5px solid red;
   border-radius: 5px;
-  border: 6px solid red;
+  color: red;
 }
 
-
-input.was-validated:valid {
+.was-validated.valid{
+  border: 5px solid green;
   border-radius: 5px;
-  border: 6px solid green;
+  color:black
 }
-
- #name-valid-feedback ,#name-invalid-feedback ,#name-en-valid-feedback ,
- #name-en-invalid-feedback{
-  display: none;
-}
-
-#name-valid-feedback.show,
-#name-en-valid-feedback.show,
-#name-invalid-feedback.show,
-#name-en-invalid-feedback.show{
-  display: block;
-}
-
-#name-valid-feedback.show ,#name-en-valid-feedback.show {
-  color: green;
-}
-
-#name-invalid-feedback.show ,#name-en-invalid-feedback.show{
-   color:red;
- }

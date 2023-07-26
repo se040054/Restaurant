@@ -8,17 +8,26 @@ const Restaurant=db.Restaurant
 const bodyParser = require('body-parser')
 const restaurant = require('./models/restaurant')
 const methodOverride = require('method-override') 
+
 app.engine('.hbs', engine({extname: '.hbs'}))
 app.set('view engine', '.hbs')
 app.set('views', './views')
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
+
 app.get('/',(req,res)=>{
   res.redirect('/restaurants')
 })
 
+
+
 app.get('/restaurants',(req,res)=>{
+
   return Restaurant.findAll({
     attributes:['id','image','name'],
     raw:true
@@ -26,6 +35,8 @@ app.get('/restaurants',(req,res)=>{
     .then((restaurants)=>res.render('index',{restaurants}))
 })
 app.get('/restaurants/create',(req,res)=>{
+  
+  
   res.render('create')
 })
 
@@ -85,3 +96,5 @@ app.delete('/restaurants/:id',(req,res)=>{
 app.listen(port, () => {
   console.log(`Click : http://localhost:3000`)
 })
+
+
