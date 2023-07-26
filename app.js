@@ -6,7 +6,6 @@ const port = 3000
 const db=require('./models')
 const Restaurant=db.Restaurant
 const bodyParser = require('body-parser')
-const restaurant = require('./models/restaurant')
 const methodOverride = require('method-override') 
 
 app.engine('.hbs', engine({extname: '.hbs'}))
