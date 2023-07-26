@@ -1,43 +1,152 @@
 <div class="create-container" >
-<form  action="/restaurants" method="POST">
+<form  action="/restaurants" method="POST"  >
+
+
 <div class="create-form">
-  <label>餐廳名稱 : </p> 
-  <input id="name" type="text" placeholder="Enter name... " name="name" required>
+  <label>*餐廳名稱 :  
+  <input id="name" type="text" placeholder="Enter name... " name="name" minlength="2" maxlength="40" 
+  oninput="checkNameValidity(event)" required >
+  <div id="name-valid-feedback">
+    OK!
+  </div>
+  <div id="name-invalid-feedback">
+    Please enter 2 ~ 40 chars
+  </div>
+</div>
+
+
+<div class="create-form">
+  <label>*英文名稱 : 
+    <input id="name-en" type="text" placeholder="Full English Name" name="name_en" minlength="2" maxlength="40"   pattern="^[a-zA-Z0-9]+$" oninput="checkNameEnValidity(event)" required >
+      <div id="name-en-valid-feedback">
+        OK!
+      </div>
+      <div id="name-en-invalid-feedback">
+        Please enter 2 ~ 40 chars
+      </div>
+</div>
+
+
+<div class="create-form">
+  <label>*分類 : 
+    <select  id="category"  name="category" required>
+      <option value="" selected disabled>--請選擇一個選項--</option>
+      <option>中東料理</option>
+      <option>日本料理</option>
+      <option>義式餐廳</option>
+      <option>美式</option>
+      <option>酒吧</option>
+      <option>咖啡</option>
+      <option>台式料理</option>
+      <option>越南料理</option>
+      <option>韓式料理</option>
+      <option>飲料店</option>
+      <option>零食甜點</option>
+    </select>
 </div>
 <div class="create-form">
-  <label>英文名稱 : </p>
-    <input id="name-en" type="text" placeholder="Enter english name... " name="name_en" >
+  <label>*圖片網址 : 
+    <input id="image" type="text" placeholder="Enter imageURL... " name="image"  class="custom-input" onchange="checkImgValidity(event)" required >
 </div>
 <div class="create-form">
-  <label>分類 : </p>
-    <input id="category" type="text" placeholder="Enter category... " name="category" required>
+  <label>*地址 : 
+    <input id="location" type="text" placeholder="Enter location... " name="location" class="custom-input" maxlength="250"  required>
 </div>
 <div class="create-form">
-  <label>圖片網址 : </p>
-    <input id="image" type="text" placeholder="Enter imageURL... " name="image">
+  <label>電話 : 
+    <input id="phone" type="text" placeholder="Enter phone... " minlength="9" maxlength="10" name="phone" pattern="^[0-9]+$">
 </div>
 <div class="create-form">
-  <label>地址 : </p>
-    <input id="location" type="text" placeholder="Enter location... " name="location" required>
+  <label>Google 地圖網址 : 
+    <input id="google-map" type="text" placeholder="Enter google map... " name="google_map"   class="custom-input" maxlength="250"  >
 </div>
 <div class="create-form">
-  <label>電話 : </p>
-    <input id="phone" type="text" placeholder="Enter phone... " name="phone">
+  <label>*評分 : 
+    <input id="rating" type="number" min="1" max="5" step="0.1" placeholder="1~5" name="rating" required>
 </div>
 <div class="create-form">
-  <label>Google 地圖網址 : </p>
-    <input id="google-map" type="text" placeholder="Enter google map... " name="google_map">
+  <label>*餐廳介紹 : 
+    <textarea id="description" rows="5" cols="80" placeholder="Enter description... " name="description" required></textarea>
 </div>
-<div class="create-form">
-  <label>評分 : </p>
-    <input id="rating" type="number" min="1" max="5" step="0.1" placeholder="Enter rating... " name="rating" required>
-</div>
-<div class="create-form">
-  <label>餐廳介紹 : </p>
-    <input id="description" type="textarea " placeholder="Enter description... " name="description" required>
-</div>
+
+
 <button type="submit"> 送出 </button>
 </form>
 </div>
 
 <button class="back"><a href="/restaurants" class="back"> ↩️</a></button>
+
+<script>
+  let nameValid=false
+  let name_enValid=false
+  let ImgValidity=false
+  let locationValidity=false
+  let phoneValidity=false
+  let google_mapValidity=false
+  let ratingValidity=false
+  let descriptionValidity=false
+
+
+
+
+
+
+  function checkNameValidity(event){
+    const name=event.target.value
+    const input=event.target
+    if (name.length < 2 || name.length >40 ){
+      //無效
+      input.setCustomValidity("please enter 2~40 chars ")
+      input.reportValidity()
+      input.classList.add('was-validated') 
+      document.querySelector('#name-invalid-feedback').classList.add('show')
+      document.querySelector('#name-valid-feedback').classList.remove('show') 
+    }
+    else{
+      //有效
+      input.setCustomValidity('')
+      input.classList.add('was-validated')
+      document.querySelector('#name-valid-feedback').classList.add('show')
+      document.querySelector('#name-invalid-feedback').classList.remove('show')
+    }
+  }
+
+  function checkNameEnValidity(event) {
+      const name = event.target.value
+      const input = event.target
+      if (name.length < 2 || name.length > 40) {
+        //無效
+        input.setCustomValidity("please enter 2~40 chars ")
+        input.reportValidity()
+        input.classList.add('was-validated')
+        document.querySelector('#name-en-invalid-feedback').classList.add('show')
+        document.querySelector('#name-en-valid-feedback').classList.remove('show')
+      }
+      else {
+        //有效
+        input.setCustomValidity('')
+        input.classList.add('was-validated')
+        document.querySelector('#name-en-valid-feedback').classList.add('show')
+        document.querySelector('#name-en-invalid-feedback').classList.remove('show')
+      }
+    }
+
+
+
+
+  function checkImgValidity(event){
+    const url=event.target.value
+    let image=new Image()
+    image.onload = function (){
+      alert('Yes')
+      return true
+    }
+    image.onerror=function(){
+      alert('No')
+      return false
+    }
+    image.src=url
+  }
+
+
+</script>

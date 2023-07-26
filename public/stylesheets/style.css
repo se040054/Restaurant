@@ -69,10 +69,8 @@ button {
 
 .create-container{
   margin-top: 2em;
-  margin-left: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-left: 25em;
+
 }
 
 .create-container   .create-form{
@@ -97,3 +95,41 @@ a.back{
   align-items: center;
 
 }
+
+
+.custom-input {
+  width: 800px;
+}
+
+
+
+input.was-validated:invalid {
+  border-radius: 5px;
+  border: 6px solid red;
+}
+
+
+input.was-validated:valid {
+  border-radius: 5px;
+  border: 6px solid green;
+}
+
+ #name-valid-feedback ,#name-invalid-feedback ,#name-en-valid-feedback ,
+ #name-en-invalid-feedback{
+  display: none;
+}
+
+#name-valid-feedback.show,
+#name-en-valid-feedback.show,
+#name-invalid-feedback.show,
+#name-en-invalid-feedback.show{
+  display: block;
+}
+
+#name-valid-feedback.show ,#name-en-valid-feedback.show {
+  color: green;
+}
+
+#name-invalid-feedback.show ,#name-en-invalid-feedback.show{
+   color:red;
+ }
