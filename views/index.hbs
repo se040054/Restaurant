@@ -1,13 +1,25 @@
-
-<a href="/restaurants/create"><button class="create">I have a new Restaurant ! </button></a>
-
-  <div class="search-bar">
-  <form action="/restaurants">  
+<div class="search-bar">
+  <form id="form1" action="/restaurants">  
   <input id="input" type="text" name="search" value="{{keyword}}" >
-  <button type="submit">搜尋</button>
-  </form>
-  </div>
+  <button type="submit" >搜尋</button>
+
+  
+{{#if sort}}
+<span> 排序 : {{sort}}</span>
+{{/if}}
+    <select name="sort" id="sort" form="form1">
+      <option value="" disabled selected >排序方式</option>
+      <option value="AtoZ">A-Z</option>
+      <option value="ZtoA">Z-A</option>
+      <option value="類別">類別</option>
+      <option value="地區">地區</option>
+    </select>
+</form>
+</div>
+
+
 <div class="container">
+
 
 
   {{#each restaurants as |restaurant|}}
@@ -22,7 +34,7 @@
           <a href="/restaurants/{{restaurant.id}}/edit"><button>Edit</button> </a>
           <a href="/restaurants/{{restaurant.id}}">Detail</a>
           <form action="/restaurants/{{restaurant.id}}?_method=DELETE" method="POST" >
-          <button type="submit" onclick="click()">Delete</button>
+          <button type="submit">Delete</button>
           </form>
          
       </div>
@@ -31,17 +43,33 @@
 
 </div>
 
+<p hidden id="sortValue">{{sort}}</p>
 
 <script>
-  const form = document.querySelector('form')
   
-  form.addEventListener('submit',function(event){
+  const form1 = document.querySelector('#form1')
+  const sortSelect = document.querySelector('#sort')
+  const input = document.querySelector('#input')
+  const initialInput=document.querySelector('#input').value
+  const selectValue = document.querySelector('#sortValue').innerHTML
+  if (selectValue){
+    sortSelect.value = selectValue
+  }
+  
+  
+  form1.addEventListener('submit',function(event){
     const input = document.querySelector('#input').value
-    console.log(input)
     if (input.length===0){
       event.stopPropagation()
       event.preventDefault()
       alert('你啥都沒輸入')
     }
   })
+
+  sortSelect.addEventListener('change',function (event){
+    input.value = initialInput
+    form1.submit()
+  })
+  
+
 </script>

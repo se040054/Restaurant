@@ -2,42 +2,51 @@ const express  =require('express')
 const router =express.Router()
 const db=require('../models')
 const Restaurant=db.Restaurant
-const { Op } = require('sequelize');
+const { Op, or } = require('sequelize');
 
-router.get('/',(req,res)=>{
+router.get('/',async (req,res)=>{
   const keyword = req.query.search?.trim()
   console.log(keyword)
-  
-  if (keyword){
-    return Restaurant.findAll({
-      attributes:['id','image','name'],
-      raw:true,
-      where : {
-        name : {
-          [Op.like] : `%${keyword}%` }
-      }
-    }
-    ).then((restaurants)=>{
-      console.log(restaurants)
-      if (restaurants.length===0){
-        return res.render('empty',{keyword})
-      }
-      else{
-        return res.render('index',{restaurants,keyword})
-      }
-    })
+  let restaurants;
+  const sort=req.query.sort
+  let column;
+  let order;
+  switch(sort){
+    case "AtoZ" : [column,order]=["name","asc"] ;break
+    case "ZtoA" : [column,order]=["name","desc"] ;break
+    case "類別" : [column,order]=["category","asc"] ;break
+    case "地區" : [column,order]=["location","desc"] ;break
   }
+  console.log(sort)
+  if (keyword){
+           restaurants = await Restaurant.findAll({
+          attributes:['id','image','name'],
+          raw:true,
+          where : {
+          name : {[Op.like] : `%${keyword}%` }               
+          },
+          order : [[ column||"name" , order||"ASC" ]]
+        })}
+      else {
+       restaurants = await Restaurant.findAll({
+      attributes:['id','image','name'],
+      raw:true ,
+      order : [[ column||"name" , order||"ASC" ]]
+      })
+      }
+  
+  
 
-
-  return Restaurant.findAll({
-    attributes:['id','image','name'],
-    raw:true
-  })
-    .then((restaurants)=>res.render('index',{restaurants,keyword}))
+  if (restaurants.length===0){
+    res.render(('empty'),{keyword})
+  }else {
+    res.render('index',{keyword,restaurants,sort})
+  }
+  
 })
+
+
 router.get('/create',(req,res)=>{
-  
-  
   res.render('create')
 })
 
