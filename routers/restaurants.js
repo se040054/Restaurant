@@ -6,7 +6,7 @@ const { Op, or } = require('sequelize')
 
 router.get('/', async (req, res) => {
   const keyword = req.query.search?.trim()
-  console.log(keyword)
+ // console.log(keyword)
   let restaurants
   const sort = req.query.sort
   let column
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     case '類別' : [column, order] = ['category', 'asc']; break
     case '地區' : [column, order] = ['location', 'desc']; break
   }
-  console.log(sort)
+ // console.log(sort)
   if (keyword) {
     restaurants = await Restaurant.findAll({
       attributes: ['id', 'image', 'name'],

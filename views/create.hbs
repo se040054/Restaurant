@@ -173,7 +173,7 @@
       invalidFeedback.classList.remove('show')
   }
   else if (target.classList.contains('was-validated')){
-    console.log("顯示" +target +"錯誤feedback")
+   // console.log("顯示" +target +"錯誤feedback")
     validFeedback.classList.remove('show')
     invalidFeedback.classList.add('show')
   } 
@@ -259,7 +259,7 @@
   }
   function checkRatingValidity(target){ //原先能讓使用者使用小數並扣除尾數 0 但change會導致feedback誤判 所以先暫時不更動
     let rating = parseFloat(Number(target.value).toFixed(1)) 
-    console.log(rating)
+   // console.log(rating)
     if (rating<1 || rating>5) {
       target.classList.remove('valid')
       ratingValidity = false
@@ -294,7 +294,8 @@
           target.classList.remove('valid')
           google_mapValidity = false
         }
-    }).catch(err=>{ console.log(err + "fail from checkMap") })
+    })
+    {{!-- .catch(err=>{ console.log(err + "fail from checkMap") }) --}}
 
     }
     else{
@@ -310,8 +311,8 @@
       event.preventDefault()
       event.stopPropagation()
       alert('有東西沒寫') 
-      console.log(nameValid , name_enValid , ImgValidity , locationValidity , phoneValidity , google_mapValidity
-        , ratingValidity , descriptionValidity)
+      {{!-- console.log(nameValid , name_enValid , ImgValidity , locationValidity , phoneValidity , google_mapValidity
+        , ratingValidity , descriptionValidity) --}}
     }
   })
 
