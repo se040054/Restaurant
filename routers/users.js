@@ -27,7 +27,11 @@ router.post('/register',(req,res,next)=>{
       req.flash("error", "密碼不一致");
       return res.redirect("back");
     }
-    return User.create({
+    return User.findOne({where:{email}}).then((user)=>{
+      if (user){
+       return  req.flash('error','信箱已被使用')
+      }
+      return User.create({
       name,
       email,
       password
@@ -38,7 +42,7 @@ router.post('/register',(req,res,next)=>{
       error.errorMessage="創建失敗"
       next(error)
     })
-
+    })
 })
 
 
