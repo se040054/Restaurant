@@ -72,7 +72,6 @@ button {
 }
 
 .create{
-  margin-top: 1em;
   margin-left: 50em;
   font-size: 15px;
   padding: 0.5em;
@@ -152,3 +151,4 @@ a.back{
   width: 60px;
   height: 60px;
 }
+

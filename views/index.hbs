@@ -2,8 +2,6 @@
   <form id="form1" action="/restaurants">  
   <input id="input" type="text" name="search" value="{{keyword}}" >
   <button type="submit" >搜尋</button>
-
-  
 {{#if sort}}
 <span> 排序 : {{sort}}</span>
 {{/if}}
@@ -16,7 +14,7 @@
     </select>
 </form>
 </div>
-
+<button class="create"><a href="/restaurants/create">I have a new Restaurant !</a></button>
 
 <div class="container">
 
