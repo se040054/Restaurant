@@ -2,17 +2,17 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 const User=db.User
-router.get('/login',(req,res,next)=>{
+router.get('/login',(req,res)=>{
   res.render('login')
 })
 
-router.post('/login',(req,res,next)=>{
+router.post('/login',(req,res)=>{
   const body = req.body
   console.log(body)
   res.send('login')
 })
 
-router.get('/register',(req,res,next)=>{
+router.get('/register',(req,res)=>{
   res.render('register')
 })
 
@@ -29,7 +29,8 @@ router.post('/register',(req,res,next)=>{
     }
     return User.findOne({where:{email}}).then((user)=>{
       if (user){
-       return  req.flash('error','信箱已被使用')
+        req.flash('error','信箱已被使用')
+        return res.redirect("back");
       }
       return User.create({
       name,
