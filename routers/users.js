@@ -2,29 +2,29 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 const User=db.User
-router.get('/login',(req,res)=>{
+router.get('/login',(req,res,next)=>{
   res.render('login')
 })
 
-router.post('/login',(req,res)=>{
+router.post('/login',(req,res,next)=>{
   const body = req.body
   console.log(body)
   res.send('login')
 })
 
-router.get('/register',(req,res)=>{
+router.get('/register',(req,res,next)=>{
   res.render('register')
 })
 
-router.post('/register',(req,res)=>{
+router.post('/register',(req,res,next)=>{
     const body = req.body;
     const {name , email ,password , confirm_password}  =body
     if (!email || !password  || !confirm_password){
-      console.log("資料未填寫")
+      req.flash("error","資料未填寫")
       return res.redirect('back')
     }
     if (password!==confirm_password){
-      console.log("密碼不一致");
+      req.flash("error", "密碼不一致");
       return res.redirect("back");
     }
     return User.create({
@@ -32,7 +32,11 @@ router.post('/register',(req,res)=>{
       email,
       password
     }).then(()=>{
-      res.redirect('/users/login')
+      req.flash("success","創建成功")
+      return res.redirect('/users/login')
+    }).catch((error)=>{
+      error.errorMessage="創建失敗"
+      next(error)
     })
 
 })
