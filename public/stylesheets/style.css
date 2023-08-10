@@ -106,7 +106,10 @@ a.back{
   align-items: center;
 
 }
+.detail-container>a{
+  margin-top:10px ;
 
+}
 
 .custom-input {
   width: 800px;
@@ -157,4 +160,40 @@ a.back{
   position: absolute;
   top:1px;
   right:5px
+}
+
+.delete-confirm {
+  margin-left: 450px;
+  margin-top: 250px;
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+  flex-direction: row;
+  font-size: 50px;
+  
+}
+.delete-confirm>form>button {
+  padding: 10px 20px;
+  /* 按钮的内边距 */
+  font-size: 40px;
+  /* 按钮文字的字体大小 */
+  color: white;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* 添加过渡效果 */
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 6px;
+}
+
+.delete-confirm>form>button:hover {
+  background-color: darkred;
+  /* 悬停时的背景颜色 */
+}
+.confirm_word{
+  margin-left:550px;
+  margin-top:100px;
+  font-size: 50px;
+  width: 40%;
 }

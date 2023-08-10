@@ -74,7 +74,7 @@ module.exports = {
     }
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) { //為了資料能正確插入 把資料表清空
     let transaction 
     try{
       transaction = await queryInterface.sequelize.transaction();

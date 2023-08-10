@@ -12,9 +12,9 @@
   <p>評分 : {{restaurant.rating}}</p>
   <p>{{restaurant.description}}</p>
 <a href="/restaurants/{{restaurant.id}}/edit"><button>Edit</button> </a>
-          <form action="/restaurants/{{restaurant.id}}?_method=DELETE" method="POST">
-            <button type="submit">Delete</button>
-          </form>
+          
+<a href="/restaurants/{{restaurant.id}}/delete_confirm?name={{restaurant.name}}"><button>Delete</button></a>
+          
 </div>
 
 <a href="/restaurants" class="back"> ↩️</a>

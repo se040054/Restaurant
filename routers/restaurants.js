@@ -207,7 +207,7 @@ router.delete("/:id", (req, res) => {
   const id = req.params.id;
   const userId = req.user.id;
   return Restaurant.findByPk(id, {
-    attributes: ["id", "userId"],
+    attributes: ["id", "userId"]
   }).then((restaurant) => {
     if (!restaurant) {
       req.flash("error", "找不到資料");
@@ -223,5 +223,30 @@ router.delete("/:id", (req, res) => {
     });
   });
 });
+
+router.get('/:id/delete_confirm',(req,res)=>{
+  const id = req.params.id
+  const name=req.query.name
+  const userId=req.user.id
+  return Restaurant.findByPk(id,
+    {attributes: ["id", "userId"] ,raw:true}
+    
+    )
+      .then((restaurant)=>{
+        if (!restaurant){
+          req.flash("error", "找不到資料");
+          return res.redirect("/restaurants");
+        }
+        if (userId !==restaurant.userId){
+          req.flash("error", "沒有權限");
+          return res.redirect("/restaurants");
+        }
+        return res.render('delete_confirm',{id,name})
+      }).catch((error)=>{
+        error.errorMessage = "伺服器出現錯誤"
+        res.redirect('/restaurants') //最好不要用back(不正確的導向)或根目錄(兩次請求無法抓取flash) 
+      })
+  
+})
 
 module.exports = router;

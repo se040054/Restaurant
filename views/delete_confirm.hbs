@@ -1,0 +1,11 @@
+
+
+ <h3 class="confirm_word">確定要刪除 {{name}} 嗎 ? </h3>
+<div class="delete-confirm">
+ 
+  <form action="/restaurants/{{id}}?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+  </form>
+  <a href="/restaurants">No</a>
+
+</div>
