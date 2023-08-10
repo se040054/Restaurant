@@ -72,7 +72,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user, done) => {
-  done(null, { id: user.id });
+  return done(null, { id: user.id ,name:user.name,email:user.email });
 });
 
 router.get("/login", (req, res) => {

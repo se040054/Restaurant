@@ -157,10 +157,18 @@ a.back{
 }
 
 .logout{
+  display: flex;
   position: absolute;
   top:1px;
-  right:5px
+  right:5px;
+  font-size:22px ;
+  align-items: center;
+  width: 200px ;
+  justify-content: space-evenly;
+  color: #dde9eb;
 }
+
+
 
 .delete-confirm {
   margin-left: 450px;

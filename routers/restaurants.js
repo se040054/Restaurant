@@ -6,13 +6,15 @@ const { Op, or } = require("sequelize");
 const restaurant = require("../models/restaurant");
 
 router.get("/", async (req, res) => {
+  
   const keyword = req.query.search?.trim();
-  // console.log(keyword)
   let restaurants;
   const sort = req.query.sort;
   let column;
   let order;
-  const userId = req.user.id;
+  const userId = req.user.id
+  res.locals.user = req.user
+  console.log(req.user)
   switch (sort) {
     case "AtoZ":
       [column, order] = ["name", "asc"];
@@ -55,6 +57,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/create", (req, res) => {
+  res.locals.user = req.user;
   res.render("create");
 });
 
@@ -86,6 +89,8 @@ router.post("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
+  res.locals.user = req.user;
+  
   const id = req.params.id;
   const userId = req.user.id;
   return Restaurant.findByPk(id, {
@@ -117,6 +122,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.get("/:id/edit", (req, res) => {
+  res.locals.user = req.user;
   const id = req.params.id;
   const userId = req.user.id;
   return Restaurant.findByPk(id, {
@@ -225,6 +231,7 @@ router.delete("/:id", (req, res) => {
 });
 
 router.get('/:id/delete_confirm',(req,res)=>{
+  res.locals.user = req.user;
   const id = req.params.id
   const name=req.query.name
   const userId=req.user.id
