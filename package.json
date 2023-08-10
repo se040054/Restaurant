@@ -6,12 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "set NODE_ENV=development&& nodemon app.js"
+    "dev": "set NODE_ENV=development&& nodemon app.js",
+    "seed": "npx sequelize db:seed:all",
+    "seed-undo": "npx sequelize db:seed:undo:all"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

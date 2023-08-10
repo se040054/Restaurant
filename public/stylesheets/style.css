@@ -16,11 +16,12 @@ nav{
   background-color:rgba(0, 129, 133, 0.974);
   width:100%;
   color: #ffffff;
-  min-height: 2em;
+  min-height:30px;
   display: flex;
   align-items: center;
-  font-size:34px;
+  font-size:26px;
   padding: 0 0 0 1.5em ;
+  margin-bottom:3px ;
 }
 
 .search-bar{
@@ -152,3 +153,8 @@ a.back{
   height: 60px;
 }
 
+.logout{
+  position: absolute;
+  top:1px;
+  right:5px
+}

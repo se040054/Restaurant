@@ -5,8 +5,8 @@ const User = db.User;
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const { where } = require("sequelize");
-
-passport.use(
+const bcrypt = require("bcryptjs");
+passport.use( 
   new LocalStrategy({ usernameField: "email" }, (username, password, done) => {
     return User.findOne({
       attributes: ["id", "name", "email", "password"],
@@ -15,12 +15,14 @@ passport.use(
     })
       .then((user) => {
         if (!user) {
-          return done(null, false, { message: "查無帳號" });
-        }
-        if (password !== user.password) {
-          return done(null, false, { message: "密碼錯誤" });
-        }
-        return done(null, user);
+          return done(null, false, { message: "查無帳號" }); 
+        }//登入策略時 不要用redirect導向 而是用done ，也不要寫flash(抓不到)
+        return bcrypt.compare(password, user.password).then((isMatch) => {
+          if (!isMatch) {
+            return done(null,false,{message:"密碼錯誤"}) 
+          }
+          return done(null, user);
+        });
       })
       .catch((error) => {
         error.errorMessage = "伺服器發生問題 請稍後再登入";
@@ -76,19 +78,21 @@ router.post("/register", (req, res, next) => {
       req.flash("error", "信箱已被使用");
       return res.redirect("back");
     }
-    return User.create({
-      name,
-      email,
-      password,
-    })
-      .then(() => {
-        req.flash("success", "創建成功");
-        return res.redirect("/users/login");
+    return bcrypt.hash(password, 10).then((hash) => {
+      return User.create({
+        name,
+        email,
+        password: hash,
       })
-      .catch((error) => {
-        error.errorMessage = "創建失敗";
-        next(error);
-      });
+        .then(() => {
+          req.flash("success", "創建成功");
+          return res.redirect("/users/login");
+        })
+        .catch((error) => {
+          error.errorMessage = "創建失敗";
+          next(error);
+        });
+    });
   });
 });
 

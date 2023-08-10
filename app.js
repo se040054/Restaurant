@@ -12,7 +12,7 @@ const messageHandler = require('./middleware/message-handler')
 const errorHandler = require('./middleware/error-handler')
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 if (process.env.NODE_ENV === 'development') {
   app.use(session({
