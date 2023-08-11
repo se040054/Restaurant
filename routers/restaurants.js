@@ -85,7 +85,10 @@ router.post("/", (req, res) => {
     rating,
     description,
     userId,
-  }).then(() => res.redirect("/"));
+  }).then(() => {
+    req.flash("success", "新增成功");
+    return res.redirect("/restaurants");
+  });
 });
 
 router.get("/:id", (req, res) => {
@@ -204,7 +207,8 @@ router.put("/:id", (req, res) => {
         description,
       })
       .then(() => {
-        res.redirect(`${id}`);
+        req.flash("success", "修改成功");
+        return res.redirect(`${id}`);
       });
   });
 });

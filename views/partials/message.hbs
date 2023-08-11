@@ -1,7 +1,15 @@
 {{#if success_msg}}
-<div>{{success_msg}}</div>
+  <div class="message_container">
+    <p class="success_message">
+    {{success_msg}} ✔️
+    </p>
+  </div>
 {{/if}}
 
 {{#if error_msg}}
-<div>{{error_msg}}</div>
+  <div class="message_container fail_message">
+    <p class="fail_message">
+     {{error_msg}} ❌
+    </p>
+  </div>
 {{/if}}

@@ -90,3 +90,6 @@ module.exports = {
     }
   },
 };
+
+
+//npx sequelize db:seed --seed 20230723145251-initial-data.js

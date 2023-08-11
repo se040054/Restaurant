@@ -1,5 +1,6 @@
 {{>logout}}
 {{>message}}
+{{>back}}
 <div class="create-container">
   <form action="/restaurants/{{restaurant.id}}?_method=PUT" method="POST" class="form" novalidate>
 
@@ -123,7 +124,7 @@
 
 
 
-<a href="/restaurants" class="back"> ↩️</a>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>

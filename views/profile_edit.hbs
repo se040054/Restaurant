@@ -1,9 +1,29 @@
-
+{{>logout}}
+{{>message}}
+{{>back}}
 <div class="profile-container">
   <h1>Profile</h1>
-  <p>Name : {{name}} </p>
-  <p>Email : {{email}}</p>
-  <p>You are register with : {{role}}</p>
+  <p>留空為不更改</p>
+  <p>GOOGLE帳號無法更改信箱</p>
+  <p>顯示資訊會在下次登入時更新</p>
+  <form action="/profile/edit?_method=PUT" method="post">
+  <label for="name">Name 
+    <input name="name" type="text" id="name" value="{{name}}">
 
-  <button onclick="location.href='/profile/edit'">📚 Profile</button>
+  </label>
+  <label for="email">Email 
+    <input name="email" type="text" id="email" value="{{email}}">
+  </label>
+  
+  <label for="password">New password
+    <input name="password" id="password" type="text"> 
+  </label>
+
+  <label for="confirm_password">Confirm new password
+    <input name="confirm_password" id="confirm_password" type="text"> 
+  </label>
+
+  <button type="submit">Submit </button>
+  
+  </form>
 </div>
