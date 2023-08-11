@@ -10,7 +10,7 @@ const User = db.User;
 passport.use(
   new LocalStrategy({ usernameField: "email" }, (username, password, done) => {
     return User.findOne({
-      attributes: ["id", "name", "email", "password"],
+      attributes: ["id", "name", "email", "password" , "role"], //要存入session的user屬性
       where: { email: username },
       raw: true,
     })
@@ -46,7 +46,7 @@ passport.use(
       const email = profile.emails[0].value;
       console.log(profile);
       return User.findOne({
-        attributes: ["id", "email", "name"],
+        attributes: ["id", "email", "name","role"],
         where: { email },
         raw: true,
       })
@@ -58,11 +58,13 @@ passport.use(
               name: displayName,
               email,
               password: hash,
+              role:"google_user"
             });
             return done(null, {
               id: newUser.id,
               name: newUser.name,
               email: newUser.email,
+              role:newUser.role
             });
           }
           return await done(null, user); //done第一個參數為錯誤 第二個為使用者(給session)
@@ -76,12 +78,17 @@ passport.use(
 );
 
 passport.serializeUser((user, done) => {
-  const { id, name, email } = user;
-  return done(null, { id, name, email }); //這裡對應到登入策略done 一個user要有id ,name ,email屬性丟給session
+  const { id, name, email ,role } = user;
+  return done(null, { id, name, email ,role }); //這裡對應到登入策略done 一個user要有id ,name ,email屬性丟給session
 });
 
 passport.deserializeUser((user, done) => {
-  return done(null, { id: user.id, name: user.name, email: user.email }); //從session取出的user
+  return done(null, {
+     id: user.id, 
+     name: user.name, 
+     email: user.email,
+     role: user.role 
+    }); //從session取出的user
 });
 
 module.exports =passport

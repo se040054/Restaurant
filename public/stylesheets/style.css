@@ -176,10 +176,21 @@ a.back{
 .nav-title{
   margin-right: 60px;
 }
-.nav-btn{
-  font-size: 50px;
-  padding: 0;
-  
+
+
+.nav-btn,
+.nav-profile {
+  font-size: 26px;
+  /* 設定相同的字體大小 */
+  padding: 5px 15px;
+  /* 調整上下和左右的 padding */
+  margin-right: 10px;
+  /* 添加間距 */
+}
+
+/* 如果您希望在最右邊有間距，也可以設定 .nav-profile 的 margin-right */
+.nav-profile {
+  margin-right: 20px;
 }
 
 .logout {
@@ -237,7 +248,9 @@ a.back{
 }
 
 
-/* GPT複製貼上 */
+/*以下皆為 GPT複製貼上 */ 
+
+
 .login-container,
 .register-container {
   width: 100%;
@@ -301,3 +314,23 @@ button {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   /* 增加陰影效果 */
 }
+
+.profile-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.profile-container h1 {
+  margin-bottom: 25px;
+  font-size: 45px;
+}
+
+.profile-container p {
+  margin: 15px;
+  font-size: 23px;
+} 

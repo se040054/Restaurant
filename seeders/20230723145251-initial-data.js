@@ -48,6 +48,7 @@ module.exports = {
             password: hash,
             createdAt: new Date(),
             updatedAt: new Date(),
+            role:"web_user"
           },
           {
             id: 2,
@@ -55,6 +56,7 @@ module.exports = {
             password: hash,
             createdAt: new Date(),
             updatedAt: new Date(),
+            role:"web_user"
           },
         ],
         { transaction }

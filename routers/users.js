@@ -4,6 +4,7 @@ const db = require("../models");
 const User = db.User;
 const passport = require("passport");
 const bcrypt=require('bcryptjs')
+
 router.get("/login", (req, res) => {
   res.render("login");
 });
@@ -47,6 +48,7 @@ router.post("/register", (req, res, next) => {
         name,
         email,
         password: hash,
+        role:'web_user'
       })
         .then(() => {
           req.flash("success", "創建成功");
