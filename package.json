@@ -8,9 +8,9 @@
     "start": "node app.js",
     "dev": "set NODE_ENV=development&& nodemon app.js",
     "seed": "npx sequelize db:seed --seed 20230723145251-initial-data.js",
-    "seed-undo": "npx sequelize db:seed:undo: --seed 20230723145251-initial-data.js",
+    "seed-undo": "npx sequelize db:seed:undo --seed 20230723145251-initial-data.js",
     "seed-insert" : "npx sequelize db:seed --seed 20230811-insertRestaurants.js",
-    "seed-insert-undo" : "npx sequelize db:seed --seed 20230811-insertRestaurants.js"
+    "seed-insert-undo" : "npx sequelize db:seed:undo --seed 20230811-insertRestaurants.js"
   },
   "keywords": [],
   "author": "",
