@@ -1,9 +1,7 @@
 {{>message}}
-
+<div class="login-container">
 <h1>Log in </h1>
-
 <form action="/users/login" method="POST">
-
 <label for="">
   email
   <input type="text" name="email">
@@ -15,13 +13,7 @@
 </label>
 <div></div>
 <button type="submit">Submit</button>
-
-
-
 </form>
-
 <a href="/users/register">Don't have an account ? register</a>
-
-<div>
-  <a href="/users/login/google"><button>Login with google</button></a>
+<a href="/users/login/google"><button>Login with google</button></a>
 </div>

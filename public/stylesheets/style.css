@@ -8,12 +8,11 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin:1em 0;
-
   justify-content: space-evenly;
 }
 
 nav{
-  background-color:rgba(0, 129, 133, 0.974);
+  background-color:rgba(34, 111, 92, 0.974);
   width:100%;
   color: #ffffff;
   min-height:30px;
@@ -72,10 +71,34 @@ button {
   font-size: 20px;
 }
 
-.create{
-  margin-left: 50em;
+.create {
+  margin-left: auto;
+  /* 使用 auto 和 margin-right 來置中 */
+  margin-right: auto;
   font-size: 15px;
-  padding: 0.5em;
+  padding: 0.5em 1em;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  /* 將按鈕轉為塊級元素以置中 */
+  width: fit-content;
+  /* 讓按鈕寬度自適應內容 */
+}
+
+.create a {
+  color: white;
+  text-decoration: none;
+  border-bottom: none;
+  /* 移除超連結底線 */
+}
+
+.create:hover {
+  background-color: #297fb8;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 .create-container{
@@ -87,6 +110,9 @@ button {
 .create-container   .create-form{
   margin-bottom:1em ;
 }
+
+
+
 a.back{
   position: fixed;
   top:250px ;
@@ -151,21 +177,25 @@ a.back{
   margin-right: 60px;
 }
 .nav-btn{
-  font-size: 40px;
-  width: 60px;
-  height: 60px;
+  font-size: 50px;
+  padding: 0;
+  
 }
 
-.logout{
+.logout {
   display: flex;
   position: absolute;
-  top:1px;
-  right:5px;
-  font-size:22px ;
+  top: 1px;
+  right: 5px;
+  font-size: 22px;
   align-items: center;
-  width: 200px ;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  /* 更改為 space-between 以增加字體與按鈕之間的間距 */
   color: #dde9eb;
+  white-space: nowrap;
+  min-width: 200px;
+  margin-right: 20px;
+  /* 添加右邊的間距 */
 }
 
 
@@ -204,4 +234,70 @@ a.back{
   margin-top:100px;
   font-size: 50px;
   width: 40%;
+}
+
+
+/* GPT複製貼上 */
+.login-container,
+.register-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.login-container h1,
+.register-container h1 {
+  margin-bottom: 20px;
+}
+
+.login-container form,
+.register-container form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-container label,
+.register-container label {
+  text-align: left;
+    /* 將標籤置左 */
+  display: block;
+  margin-top: 10px;
+}
+
+.login-container input,
+.register-container input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 5px;
+}
+
+.login-container a,
+.register-container a {
+  margin-top: 20px;
+}
+
+
+
+button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  /* 圓角 */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* 平滑的顏色過渡效果 */
+}
+
+ button:hover {
+  background-color: #297fb8;
+  /* hover 時的顏色 */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  /* 增加陰影效果 */
 }
