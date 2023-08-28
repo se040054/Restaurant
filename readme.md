@@ -4,7 +4,7 @@
 
 ![photo](https://cdn.discordapp.com/attachments/1116356872572784661/1139515365387411507/2023-08-11_18-43-47.jpg)
 
-![photo](https://cdn.discordapp.com/attachments/1116356872572784661/1139518646830518352/2023-08-11_19-19-43.jpg)
+![photo](https://cdn.discordapp.com/attachments/1116356872572784661/1145627927443157122/2023-08-28_15-43-03.jpg)
 
 ---
 
@@ -21,7 +21,8 @@
 * 登入使用者
 * 修改使用者資訊
 * 從Google登入使用者
-
+* 從Facebook登入使用者
+* 
 (在登入之後...你可以)
 
 * 瀏覽餐廳列表，並且可以選擇排序方式
@@ -47,6 +48,7 @@
 * mysql2
 * passport
 * passport-google-oauth
+* passport-facebook-oauth
 * passport-local
 * sequelize
 * sequelize-cli
