@@ -9,8 +9,8 @@
     "dev": "set NODE_ENV=development&& nodemon app.js",
     "seed": "npx sequelize db:seed --seed 20230723145251-initial-data.js",
     "seed-undo": "npx sequelize db:seed:undo --seed 20230723145251-initial-data.js",
-    "seed-insert" : "npx sequelize db:seed --seed 20230811-insertRestaurants.js",
-    "seed-insert-undo" : "npx sequelize db:seed:undo --seed 20230811-insertRestaurants.js"
+    "seed-insert": "npx sequelize db:seed --seed 20230811-insertRestaurants.js",
+    "seed-insert-undo": "npx sequelize db:seed:undo --seed 20230811-insertRestaurants.js"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,7 @@
     "method-override": "^3.0.0",
     "mysql2": "^3.2.0",
     "passport": "^0.6.0",
+    "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
     "passport-local": "^1.0.0",
     "sequelize": "^6.30.0",

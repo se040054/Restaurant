@@ -72,9 +72,7 @@ router.post("/logout", function (req, res, next) {
 });
 
 
-router.get("/login/google", 
-    passport.authenticate("google")
-);
+router.get("/login/google",passport.authenticate("google"));
 
 
 router.get("/oauth2/google/callback",
@@ -85,6 +83,14 @@ router.get("/oauth2/google/callback",
   })
 );
 
+router.get('/login/facebook',passport.authenticate('facebook',{ scope: ['email'] }
+))
+
+router.get('/oauth2/redirect/facebook', passport.authenticate('facebook', {
+  successRedirect: '/restaurants',
+  failureRedirect: '/users/login',
+  failureFlash: true
+}))
 
 
 
