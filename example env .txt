@@ -3,3 +3,8 @@ SESSION_SECRET=#
 GOOGLE_CLIENT_ID=#
 GOOGLE_CLIENT_SECRET=#
 GOOGLE_CALLBACK_URL=http://localhost:3000/users/oauth2/google/callback
+
+
+FACEBOOK_CLIENT_ID=#
+FACEBOOK_CLIENT_SECRET=#
+FACEBOOK_CALLBACK_URL=http://localhost:3000/users/oauth2/redirect/facebook
